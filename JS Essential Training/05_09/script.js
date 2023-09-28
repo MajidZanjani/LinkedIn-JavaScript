@@ -4,22 +4,21 @@
  * @link https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll
  */
 
-import Backpack from "./Backpack.js";
+import Backpack from './Backpack.js';
 
 const everydayPack = new Backpack(
-  "Everyday Backpack",
+  'Everyday Backpack',
   30,
-  "grey",
+  'grey',
   15,
   26,
   26,
   false,
-  "December 5, 2018 15:00:00 PST",
-  "../assets/images/everyday.svg"
+  'December 5, 2018 15:00:00 PST',
+  '../assets/images/everyday.svg'
 );
 
 const content = `
-  <article class="backpack" id="everyday">
     <figure class="backpack__image">
       <img src=${everydayPack.image} alt="" />
     </figure>
@@ -45,9 +44,13 @@ const content = `
         everydayPack.lidOpen
       }</span></li>
     </ul>
-  </article>
 `;
 
-const main = document.querySelector(".maincontent");
+const main = document.querySelector('.maincontent');
 
-main.innerHTML = content;
+const newArticle = document.createElement('article');
+newArticle.classList.add('backpack');
+newArticle.setAttribute('id', 'everyday');
+newArticle.innerHTML = content;
+
+main.append(newArticle);
