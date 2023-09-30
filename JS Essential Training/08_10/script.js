@@ -4,9 +4,9 @@
  */
 
 // Helper function to format currency numbers. Used by tipCalculator
-const formatter = (locale = "en-US", currency = "USD", value) => {
+const formatter = (locale = 'en-US', currency = 'USD', value) => {
   let formattedValue = new Intl.NumberFormat(locale, {
-    style: "currency",
+    style: 'currency',
     currency: currency,
   }).format(value);
 
@@ -15,7 +15,7 @@ const formatter = (locale = "en-US", currency = "USD", value) => {
 
 // Callback receives finalTip object, creates and outputs table on the DOM.
 const printHTML = (finalTip) => {
-  const tipTable = document.createElement("table");
+  const tipTable = document.createElement('table');
   tipTable.innerHTML = `
     <tr>
       <td>Sum before tip:</td>
@@ -34,20 +34,22 @@ const printHTML = (finalTip) => {
       <td>${finalTip.total}</td>
     </tr>
   `;
-  document.querySelector("main").append(tipTable);
+  document.querySelector('main').append(tipTable);
 };
 
 // Create a finalTip object with all the data. Send it to the printHTML callback.
-const tipCalculator = (sum, percentage, locale, currency) => {
+const tipCalculator = (sum, percentage, locale, currency, callback) => {
   let tip = sum * (percentage / 100);
   let total = sum + tip;
 
   const finalTip = {
     sum: formatter(locale, currency, sum),
-    percentage: percentage + "%",
+    percentage: percentage + '%',
     tip: formatter(locale, currency, tip),
     total: formatter(locale, currency, total),
   };
+
+  callback(finalTip);
 };
 
-tipCalculator(29.95, 18, "de-DE", "EUR");
+tipCalculator(29.95, 18, 'de-DE', 'EUR', printHTML);
