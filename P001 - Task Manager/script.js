@@ -42,6 +42,7 @@ function displayTasks() {
         `;
     tasksList.appendChild(taskElement);
   });
+  console.log(tasks);
 }
 
 function completeTask(index) {
