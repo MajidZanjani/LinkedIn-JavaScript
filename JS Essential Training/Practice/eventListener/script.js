@@ -1,10 +1,12 @@
-function updatePage() {
+function updatePage(document) {
   // Your code goes here.
   const forms = document.querySelectorAll('form');
   forms.forEach((form) => {
     form.addEventListener('submit', (ev) => {
       ev.preventDefault();
-      const target = ev.target.getAttribute('data-target');
+      let target = ev.target
+        .querySelector('button')
+        .getAttribute('data-target');
       const inputEl = document.getElementById(`${target}-input`);
       const targetEl = document.getElementById(target).querySelector('.value');
       targetEl.textContent = inputEl.value;
@@ -22,4 +24,4 @@ const inputs = [
   { id: 'volume-input', value: '35L' },
 ];
 
-updatePage();
+updatePage(document);
